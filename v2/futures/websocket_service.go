@@ -1007,10 +1007,10 @@ type WsUserDataEvent struct {
 
 func (e *WsUserDataEvent) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Event               UserDataEventType     `json:"e"`
-		Time                interface{}           `json:"E"`
-		CrossWalletBalance  string                `json:"cw"`
-		MarginCallPositions []WsPosition          `json:"p"`
+		Event              UserDataEventType `json:"e"`
+		Time               interface{}       `json:"E"`
+		CrossWalletBalance string            `json:"cw"`
+		//MarginCallPositions []WsPosition
 		TransactionTime     int64                 `json:"T"`
 		AccountUpdate       WsAccountUpdate       `json:"a"`
 		OrderTradeUpdate    WsOrderTradeUpdate    `json:"o"`
@@ -1034,7 +1034,7 @@ func (e *WsUserDataEvent) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("unexpected type for E: %T", tmp.Time)
 	}
 	e.CrossWalletBalance = tmp.CrossWalletBalance
-	e.MarginCallPositions = tmp.MarginCallPositions
+	//e.MarginCallPositions = tmp.MarginCallPositions
 	e.TransactionTime = tmp.TransactionTime
 	e.AccountUpdate = tmp.AccountUpdate
 	e.OrderTradeUpdate = tmp.OrderTradeUpdate
